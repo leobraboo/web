@@ -9,18 +9,27 @@ import { GameBanner } from './components/GameBanner';
 import { CreateAdBanner } from './components/CreateAdBanner';
 
 
+interface Game {
+  id: string;
+  title: string;
+  bannerUrl: string;
+  _count:{
+    ads: number;
+  }
+}
+
 function App() {
 //usando o useState e o useEffect para atribuir valor para o botao e alterar esse valor 
-  const [hasUserClickButton , setHasUserClickButton] = useState(false)
+  const [games , setGames] = useState<Game[]>([])
 
-  function handleButtonClick(){
-    setHasUserClickButton(!hasUserClickButton);
-
-  }
 
   useEffect(() => {
-    console.log('teste')
-  } , [hasUserClickButton] )
+    fetch('http://localHost:3333/games')
+    .then (response => response.json())
+    .then (data => {
+      setGames(data)
+    })
+  } , [] )
 
 
   return (
@@ -29,18 +38,18 @@ function App() {
 
 
       <h1 className='text-6xl text-white font-black m-10'>Seu <span className='bg-duo-gradient text-transparent bg-clip-text'> duo</span>  está aqui.</h1>
-      
-      <button onClick={handleButtonClick} >Clique aqui</button>
 
-      {hasUserClickButton ? 'usuario clicou': null}
 
       <div className='grid grid-cols-6 gap-6 mt-4'>
-        <GameBanner bannerUrl= "/image1.png" title='League Of Legends' adsCount={2} />
-        <GameBanner bannerUrl= "/image2.png" title='League Of Legends' adsCount={3} />
-        <GameBanner bannerUrl= "/image3.png" title='League Of Legends' adsCount={5} />
-        <GameBanner bannerUrl= "/image5.png" title='League Of Legends' adsCount={6} />
-        <GameBanner bannerUrl= "/image6.png" title='League Of Legends' adsCount={1} />
-        <GameBanner bannerUrl= "/image7.png" title='League Of Legends' adsCount={4} />
+        {games.map(game => {
+          return(
+            <GameBanner 
+            key={game.id}
+            bannerUrl= {game.bannerUrl} 
+            title={game.title} 
+            adsCount={game._count.ads} />
+          )
+        })}
 
       </div>
 
