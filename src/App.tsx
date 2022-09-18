@@ -1,5 +1,5 @@
 // foi feita a instalaçao do phosphor-react e a importaçao do icone abaixo
-import {useState} from 'react'
+import {useState, useEffect } from 'react';
 
 import { MagnifyingGlassPlus } from 'phosphor-react'
 
@@ -10,8 +10,17 @@ import { CreateAdBanner } from './components/CreateAdBanner';
 
 
 function App() {
-
+//usando o useState e o useEffect para atribuir valor para o botao e alterar esse valor 
   const [hasUserClickButton , setHasUserClickButton] = useState(false)
+
+  function handleButtonClick(){
+    setHasUserClickButton(!hasUserClickButton);
+
+  }
+
+  useEffect(() => {
+    console.log('teste')
+  } , [hasUserClickButton] )
 
 
   return (
@@ -20,9 +29,10 @@ function App() {
 
 
       <h1 className='text-6xl text-white font-black m-10'>Seu <span className='bg-duo-gradient text-transparent bg-clip-text'> duo</span>  está aqui.</h1>
-
-
       
+      <button onClick={handleButtonClick} >Clique aqui</button>
+
+      {hasUserClickButton ? 'usuario clicou': null}
 
       <div className='grid grid-cols-6 gap-6 mt-4'>
         <GameBanner bannerUrl= "/image1.png" title='League Of Legends' adsCount={2} />
