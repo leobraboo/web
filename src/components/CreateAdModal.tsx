@@ -7,6 +7,8 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 import {useState, useEffect } from 'react';
 
 
+import * as ToggleGroup from '@radix-ui/react-toggle-group';
+
 interface Game {
     id: string;
     title: string;
@@ -67,50 +69,57 @@ export function CreateAdModal() {
                   <div className='flex gap-6'>
                     <div className='flex flex-col gap-1  '>
                       <label htmlFor="weekDays">Quando costuma Jogar??</label>
-                      <div className='grid grid-cols-4 gap-2'>
-                        <button 
-                          title='Domingo'
-                          className='w-8 h-8 rounded bg-zinc-900 '
-                        >
-                          D
-                          </button>
-                        <button 
-                          title='Segunda'
-                          className='w-8 h-8 rounded bg-zinc-900 '
-                        >
-                          S
-                          </button>
-                        <button 
-                          title='Terça'  
-                          className='w-8 h-8 rounded bg-zinc-900 '
-                        >
-                          T
-                          </button>
-                        <button 
-                          title='Quarta' 
-                          className='w-8 h-8 rounded bg-zinc-900 '
-                        >
-                          Q
-                          </button>
-                        <button 
-                          title='Quinta' 
-                          className='w-8 h-8 rounded bg-zinc-900 '
-                        >
-                          Q
-                          </button>
-                        <button 
-                          title='Sexta' 
-
-                          className='w-8 h-8 rounded bg-zinc-900 '
-                         >
-                          S</button>
-                        <button 
-                          title='Sábado' 
-                          className='w-8 h-8 rounded bg-zinc-900 '
-                        >
-                          S
-                          </button>
-                      </div>
+                        <ToggleGroup.Root type='multiple' className='grid grid-cols-4 gap-2'>
+                            <ToggleGroup.Item 
+                                value='0'
+                                title='Domingo'
+                                className='w-8 h-8 rounded bg-zinc-900 '
+                            >
+                                D
+                            </ToggleGroup.Item>
+                            <ToggleGroup.Item 
+                                value='1'
+                                title='Segunda'
+                                className='w-8 h-8 rounded bg-zinc-900 '
+                            >
+                                S
+                            </ToggleGroup.Item>
+                            <ToggleGroup.Item
+                                value='2'
+                                title='Terça'  
+                                className='w-8 h-8 rounded bg-zinc-900 '
+                            >
+                                T
+                            </ToggleGroup.Item>
+                            <ToggleGroup.Item
+                                value='3'
+                                title='Quarta' 
+                                className='w-8 h-8 rounded bg-zinc-900 '
+                            >
+                                Q
+                            </ToggleGroup.Item>
+                            <ToggleGroup.Item
+                                value='4'
+                                title='Quinta' 
+                                className='w-8 h-8 rounded bg-zinc-900 '
+                            >
+                                Q
+                            </ToggleGroup.Item>
+                            <ToggleGroup.Item
+                                value='5'
+                                title='Sexta' 
+                                className='w-8 h-8 rounded bg-zinc-900 '
+                            >
+                                S
+                            </ToggleGroup.Item>
+                            <ToggleGroup.Item
+                                value='6'
+                                title='Sábado' 
+                                className='w-8 h-8 rounded bg-zinc-900 '
+                            >
+                                S
+                            </ToggleGroup.Item> 
+                          </ToggleGroup.Root>
 
                     </div>
                     <div className='flex flex-col gap-2 flex-1'>
